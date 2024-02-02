@@ -12,11 +12,11 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+        <p className="font-['Josefin_Sans']">
+          Edit <code>src/App.jsx</code> and save to test HR
         </p>
       </div>
-      <p className="font-semibold text-yellow-500">
+      <p className="font-semibold text-yellow-500 font-['Lato']">
         Click on the Vite and React logos to learn more
       </p>
     </>
