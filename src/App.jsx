@@ -1,24 +1,22 @@
-import { useState } from "react";
-
-import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import AppLayout from "./ui/AppLayout";
+import Home from "./pages/Home";
+import PageNotFouund from "./pages/PageNotFouund";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1 className="bg-red">Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p className="font-['Josefin_Sans']">
-          Edit <code>src/App.jsx</code> and save to test HR
-        </p>
-      </div>
-      <p className="font-semibold text-yellow-500 font-['Lato']">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate to="home" />} />
+            <Route path="home" element={<Home />} />
+
+            {/* Route incase incase the Page is Not Foud */}
+            <Route path="*" element={<PageNotFouund />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
