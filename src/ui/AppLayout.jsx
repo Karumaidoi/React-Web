@@ -1,34 +1,22 @@
 import { styled } from "styled-components";
-import { Outlet } from "react-router-dom";
 
-const Main = styled.main`
-  padding: 4rem 4.8rem 6.4rem;
-  overflow: scroll;
-`;
+import SideBar from "./SideBar";
+import Account from "./Account";
 
 const StyledAppLayout = styled.div`
   display: grid;
   height: 100vh;
-  grid-template-columns: 10rem 1fr;
-  grid-template-rows: auto 1fr;
-`;
-
-const Container = styled.div`
-  max-width: 120rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
+  grid-template-columns: 16rem 1fr 25rem;
+  overflow-y: hidden;
+  /* grid-template-rows: 5rem 1fr; */
 `;
 
 function AppLayout() {
   return (
     <StyledAppLayout>
-      <Main>
-        <Container>
-          <Outlet />
-        </Container>
-      </Main>
+      <SideBar />
+      <h1>Main</h1>
+      <Account />
     </StyledAppLayout>
   );
 }
