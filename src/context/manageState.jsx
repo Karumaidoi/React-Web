@@ -7,24 +7,37 @@ const AppState = createContext();
 // Initail State
 const initialState = {
   currentProduct: {},
+  cartNumber: 0,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "add":
       return { ...state, currentProduct: action.payload };
+    case "addToCart":
+      return { ...state, cartNumber: state.cartNumber + 1 };
   }
 }
 
 function AppProvider({ children }) {
   const [{ currentProduct }, dispatch] = useReducer(reducer, initialState);
 
+  // Function to set current product
   function setCurrentProduct(currentProduct) {
     dispatch({ type: "add", payload: currentProduct });
   }
 
+  // Add to Likes
+  function addCounter() {
+    dispatch({ type: "addToCart" });
+  }
+
+  // Add To CART
+
   return (
-    <AppState.Provider value={{ currentProduct, setCurrentProduct }}>
+    <AppState.Provider
+      value={{ currentProduct, setCurrentProduct, addCounter }}
+    >
       {children}
     </AppState.Provider>
   );

@@ -1,4 +1,4 @@
-import { Badge } from "antd";
+import { Badge, Card } from "antd";
 import { SlHandbag } from "react-icons/sl";
 import { AiOutlineHeart } from "react-icons/ai";
 import { IoCloseOutline } from "react-icons/io5";
@@ -6,8 +6,11 @@ import { IoCloseOutline } from "react-icons/io5";
 import ImageView from "./ImageView";
 import TabsComponent from "./TabsComponent";
 import LikeButton from "./LikeButton";
+import { useAppState } from "../context/manageState";
 
 function Account() {
+  const { currentProduct, setCurrentProduct } = useAppState();
+
   return (
     <div className="grid grid-rows-[75px,1fr] border-x-[1px] border-slate-100 overflow-scroll relative">
       <div className="flex gap-3 items-center  justify-end border-y-[1px] border-slate-100">
@@ -28,45 +31,59 @@ function Account() {
         </div>
       </div>
 
-      <div className="flex flex-col w-full items-center">
-        <button className="self-end p-1 bg-gray-200 rounded-full mt-1 mr-3">
-          <IoCloseOutline size={20} color="white" />
-        </button>
-        <div>
-          <img className="h-[16rem] w-auto" src="src/assets/Plant2.png" />
+      {JSON.stringify(currentProduct) == "{}" ? (
+        <div className="flex flex-col w-full items-center">
+          <div className="mt-[2rem] w-[18rem]">
+            <Card title="No Plant selected" bordered={false}>
+              To see product view, please select a product
+            </Card>
+          </div>
         </div>
-        <div className="flex gap-6 mt-2">
-          <ImageView imagePath={"plants.jpg"} />
-          <ImageView imagePath={"plants.jpg"} />
-          <ImageView imagePath={"plants.jpg"} />
-          <ImageView imagePath={"plants.jpg"} isLast={true} />
-        </div>
-
-        {/* TextBox */}
-        <div className="self-start px-8 mt-5">
-          <h3 className="font-black text-[1.2rem]">
-            Monstera Deliciosa <br />
-            Variegata (Large)
-          </h3>
-          <p className="text-sm mt-2 text-gray-500">
-            In publishing and graphic design, Lorem ipsum is a placeholder text
-            commonly used to demonstrate the visual form of a document{" "}
-          </p>
-        </div>
-
-        {/* Tab Components */}
-        <TabsComponent />
-
-        {/* FAB */}
-
-        <div className="absolute bottom-5 flex items-center gap-10">
-          <LikeButton />
-          {/* BTN */}
-          <button className="px-4 py-3 bg-green-600 text-white font-bold text-sm rounded-[.8rem] hover:bg-green-800">
-            <p>$325 - Add to Cart</p>
+      ) : (
+        <div className="flex flex-col w-full items-center">
+          <button className="self-end p-1 bg-gray-200 rounded-full mt-1 mr-3">
+            <IoCloseOutline
+              size={20}
+              color="white"
+              onClick={() => setCurrentProduct({})}
+            />
           </button>
+          <div>
+            <img
+              className="h-[16rem] w-auto"
+              src={`src/assets/${currentProduct.image}`}
+            />
+          </div>
+          <div className="flex gap-6 mt-2">
+            <ImageView imagePath={"plants.jpg"} />
+            <ImageView imagePath={"plants.jpg"} />
+            <ImageView imagePath={"plants.jpg"} />
+            <ImageView imagePath={"plants.jpg"} isLast={true} />
+          </div>
+
+          {/* TextBox */}
+          <div className="self-start px-8 mt-5">
+            <h3 className="font-black text-[1.2rem]">{currentProduct.title}</h3>
+            <p className="text-sm mt-2 text-gray-500">
+              In publishing and graphic design, Lorem ipsum is a placeholder
+              text commonly used to demonstrate the visual form of a document{" "}
+            </p>
+          </div>
+
+          {/* Tab Components */}
+          <TabsComponent />
+
+          {/* FAB */}
+
+          <div className="absolute bottom-5 flex items-center gap-10">
+            <LikeButton />
+            {/* BTN */}
+            <button className="px-4 py-3 bg-green-600 text-white font-bold text-sm rounded-[.8rem] hover:bg-green-800">
+              <p>${currentProduct.price} - Add to Cart</p>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

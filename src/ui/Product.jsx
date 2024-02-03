@@ -1,10 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Rate, Button } from "antd";
 import LikeButton from "./LikeButton";
+import { useAppState } from "../context/manageState";
 
 function Product({ title, noReviews, price, defaultRating, image }) {
+  const { setCurrentProduct } = useAppState();
   return (
-    <div className="border-[1px] rounded-[1rem] border-gray-200 py-4 px-3 flex flex-col items-center relative">
+    <div
+      className="border-[1px] rounded-[1rem] border-gray-200 py-4 px-3 flex flex-col items-center relative cursor-pointer"
+      onClick={() => {
+        setCurrentProduct({ title, noReviews, price, defaultRating, image });
+      }}
+    >
       <div className="absolute right-3">
         <LikeButton />
       </div>

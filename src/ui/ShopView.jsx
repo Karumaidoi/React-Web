@@ -25,7 +25,7 @@ const menuProps = {
 
 function ShopView() {
   return (
-    <div className="mt-0 px-[4rem] ">
+    <div className="mt-0 px-[4rem] no-scrollbar">
       <div className="flex flex-col">
         <div className="px-6 py-3 w-full bg-gray-200 rounded-[.8rem] flex items-center justify-between">
           <CiSearch size={24} color="black" className="mr-3" />
