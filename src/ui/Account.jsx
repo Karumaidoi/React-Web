@@ -9,13 +9,15 @@ import LikeButton from "./LikeButton";
 import { useAppState } from "../context/manageState";
 
 function Account() {
-  const { currentProduct, setCurrentProduct } = useAppState();
+  const { currentProduct, setCurrentProduct, cartNumber, addToCart } =
+    useAppState();
+  console.log(cartNumber);
 
   return (
     <div className="grid grid-rows-[75px,1fr] border-x-[1px] border-slate-100 overflow-scroll relative">
       <div className="flex gap-3 items-center  justify-end border-y-[1px] border-slate-100">
         <div className="flex gap-[2rem] items-center mr-4">
-          <Badge count={5}>
+          <Badge count={cartNumber}>
             <button style={{ display: "relative" }} className="relative">
               {<SlHandbag size={20} />}
             </button>
@@ -78,7 +80,10 @@ function Account() {
           <div className="absolute bottom-5 flex items-center gap-10">
             <LikeButton />
             {/* BTN */}
-            <button className="px-4 py-3 bg-green-600 text-white font-bold text-sm rounded-[.8rem] hover:bg-green-800">
+            <button
+              className="px-4 py-3 bg-green-600 text-white font-bold text-sm rounded-[.8rem] hover:bg-green-800"
+              onClick={() => addToCart()}
+            >
               <p>${currentProduct.price} - Add to Cart</p>
             </button>
           </div>
