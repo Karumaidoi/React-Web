@@ -20,6 +20,8 @@ export async function makePayment({ phoneNumber, amount, desc }) {
       }
     );
 
+    console.log(desc);
+
     // Check if response was successful, if not throw a new Error
     if (!response.ok) throw new Error("Unable to make payment");
   } catch (error) {
