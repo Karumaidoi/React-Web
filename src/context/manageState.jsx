@@ -9,6 +9,7 @@ const initialState = {
   currentProduct: {},
   likesNumber: 0,
   cartNumber: 0,
+  searchQuery: "Monstera",
 };
 
 function reducer(state, action) {
@@ -16,17 +17,19 @@ function reducer(state, action) {
     case "add":
       return { ...state, currentProduct: action.payload };
     case "addLikes":
-      return { ...state, likesNumber: state.cartNumber + 1 };
+      return { ...state, likesNumber: state.likesNumber + 1 };
     case "addToCart":
       return { ...state, cartNumber: state.cartNumber + 1 };
+    case "updateQuery":
+      return { ...state, searchQuery: action.payload };
+    case "clearCart":
+      return { ...state, cartNumber: 0 };
   }
 }
 
 function AppProvider({ children }) {
-  const [{ currentProduct, cartNumber, likesNumber }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ currentProduct, cartNumber, likesNumber, searchQuery }, dispatch] =
+    useReducer(reducer, initialState);
 
   // Function to set current product
   function setCurrentProduct(currentProduct) {
@@ -43,6 +46,16 @@ function AppProvider({ children }) {
     dispatch({ type: "addToCart" });
   }
 
+  // Method to update query -> newQuery: String
+  function updateSearchQuery(newQuery) {
+    dispatch({ type: "updateQuery", payload: newQuery });
+  }
+
+  // Clearing the Cart
+  function clearCart() {
+    dispatch({ type: "clearCart" });
+  }
+
   return (
     <AppState.Provider
       value={{
@@ -52,6 +65,9 @@ function AppProvider({ children }) {
         addToCart,
         cartNumber,
         likesNumber,
+        updateSearchQuery,
+        searchQuery,
+        clearCart,
       }}
     >
       {children}

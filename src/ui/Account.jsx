@@ -11,8 +11,14 @@ import { useAppState } from "../context/manageState";
 import { usePayment } from "../hooks/usePayment";
 
 function Account() {
-  const { currentProduct, setCurrentProduct, cartNumber, addToCart } =
-    useAppState();
+  const {
+    currentProduct,
+    setCurrentProduct,
+    cartNumber,
+    addToCart,
+    clearCart,
+    likesNumber,
+  } = useAppState();
 
   const { makePaymentAPI, isLoading } = usePayment();
 
@@ -27,9 +33,11 @@ function Account() {
               </button>
             </Badge>
 
-            <button style={{ display: "relative" }} className="relative">
-              {<AiOutlineHeart size={24} />}
-            </button>
+            <Badge count={likesNumber}>
+              <button style={{ display: "relative" }} className="relative">
+                {<AiOutlineHeart size={24} />}
+              </button>
+            </Badge>
 
             <div className="h-[40px] w-[40px] rounded-full bg-green-400 flex items-center justify-center">
               <div className="h-[35px] w-[35px] rounded-full bg-slate-400 bg-[url('src/assets/user.jpg')] bg-cover bg-center"></div>
@@ -105,6 +113,7 @@ function Account() {
                       desc: currentProduct.title,
                     }),
                       toast.success("Payment in progress");
+                    clearCart();
                   }}
                 >
                   <p>{isLoading ? <Spin /> : "Checkout"}</p>

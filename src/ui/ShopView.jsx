@@ -5,6 +5,9 @@ import { BsCashStack } from "react-icons/bs";
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Space } from "antd";
 import Product from "./Product";
+import { useAppState } from "../context/manageState";
+import { useState } from "react";
+import { productsData } from "../data/productsData";
 
 const items = [
   {
@@ -24,22 +27,42 @@ const menuProps = {
 };
 
 function ShopView() {
+  const { updateSearchQuery, searchQuery } = useAppState();
+  const [query, setQuery] = useState();
   return (
     <div className="mt-0 px-[4rem] no-scrollbar">
       <div className="flex flex-col">
         <div className="px-6 py-3 w-full bg-gray-200 rounded-[.8rem] flex items-center justify-between">
           <CiSearch size={24} color="black" className="mr-3" />
-          <input
-            type="text"
-            placeholder="Monstera"
-            className="bg-transparent outline-none w-full text-black text-md font-body placeholder:font-semibold"
+          <form
+            className="w-full"
+            onSubmit={(e) => {
+              e.preventDefault();
+              updateSearchQuery(query);
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Monstera"
+              value={query}
+              className="bg-transparent outline-none w-full  text-black text-md font-body placeholder:font-semibold"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </form>
+
+          <IoCloseOutline
+            size={24}
+            color="black"
+            className="mr-0"
+            onClick={() => {
+              updateSearchQuery("Monstera"), setQuery("");
+            }}
           />
-          <IoCloseOutline size={24} color="black" className="mr-0" />
         </div>
 
         {/* Search  */}
         <p className="mt-8">
-          Search result for <strong>"Monstera"</strong>
+          Search result for <strong>{`"${searchQuery}"`}</strong>
         </p>
 
         {/* Sort */}
@@ -66,39 +89,18 @@ function ShopView() {
           </div>
         </div>
 
-        {/*  */}
+        {/* Mapping Our Products   */}
         <div className="m-6 grid grid-cols-[250px,250px] gap-[2rem] justify-center">
-          <Product
-            title={"Monstera DK (L)"}
-            noReviews={"85"}
-            price={"385"}
-            defaultRating={2.5}
-            image={"Plant1.png"}
-          />
-
-          <Product
-            title={"Monstera Deliciosa (L)"}
-            noReviews={"137"}
-            price={"115"}
-            defaultRating={2.5}
-            image={"Plant2.png"}
-          />
-
-          <Product
-            title={"Monstera Deliciosa (L)"}
-            noReviews={"24"}
-            price={"118"}
-            defaultRating={2.7}
-            image={"Plant3-png.png"}
-          />
-
-          <Product
-            title={"Monstera Deliciosa (L)"}
-            noReviews={"13"}
-            price={"99"}
-            defaultRating={4.5}
-            image={"Plant4png.png"}
-          />
+          {productsData.map((product) => (
+            <Product
+              key={product.title}
+              title={product.title}
+              noReviews={product.noReviews}
+              price={product.price}
+              defaultRating={product.defaultRating}
+              image={product.imagePath}
+            />
+          ))}
         </div>
       </div>
     </div>

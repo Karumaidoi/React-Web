@@ -1,8 +1,10 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useState } from "react";
+import { useAppState } from "../context/manageState";
 
 function LikeButton() {
-  const [btnState, setButtonState, addCounter] = useState(false);
+  const [btnState, setButtonState] = useState(false);
+  const { addCounter } = useAppState();
   return (
     <button
       className="p-3 rounded-[.8rem] bg-rose-200 flex items-center justify-center"
