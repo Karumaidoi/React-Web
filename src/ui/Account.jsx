@@ -10,9 +10,11 @@ import LikeButton from "./LikeButton";
 import { useAppState } from "../context/manageState";
 import { usePayment } from "../hooks/usePayment";
 import { useState } from "react";
+import { formatNumber } from "../utils/numberFormatter";
 
 function Account() {
   const [phone, setPhoneNumber] = useState();
+  const [amount, setAmount] = useState();
   const {
     currentProduct,
     setCurrentProduct,
@@ -130,17 +132,28 @@ function Account() {
           </p>
           <input
             value={phone}
+            placeholder="e.g 0712345678"
             className="outline-none px-3 py-2 w-full bg-gray-300 rounded-md"
             onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          <input
+            value={amount}
+            placeholder="e.g 10"
+            className="outline-none px-3 py-2 w-full bg-gray-300 rounded-md mt-4"
+            onChange={(e) => setAmount(e.target.value)}
           />
           <div className="modal-action">
             <form method="dialog">
               <button
                 className="btn"
                 onClick={() => {
+                  // Guard Class
+                  if (phone === "" || amount == "") return;
+
+                  // Process payment
                   makePaymentAPI({
-                    phoneNumber: phone,
-                    amount: "10",
+                    phoneNumber: formatNumber(phone),
+                    amount: amount,
                     desc: currentProduct.title,
                   }),
                     toast.success("Payment in progress");
