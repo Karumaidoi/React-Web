@@ -5,7 +5,7 @@ import CTABox from "./CTABox";
 
 const items = [
   {
-    label: <p>No categories</p>,
+    label: <p>Vases</p>,
     key: "0",
   },
 ];

@@ -7,7 +7,11 @@ const onChange = (e) => {
 
 function CategoryCheckBox({ filterName, defaultChecked }) {
   return (
-    <Checkbox onChange={onChange} defaultChecked={defaultChecked}>
+    <Checkbox
+      onChange={onChange}
+      defaultChecked={defaultChecked}
+      className="accent-black"
+    >
       {filterName}
     </Checkbox>
   );
