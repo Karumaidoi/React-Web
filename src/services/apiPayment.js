@@ -1,3 +1,5 @@
+import { baseURL } from "../utils/apiConfigs";
+
 export async function makePayment({ phoneNumber, amount, desc }) {
   try {
     /*
@@ -5,22 +7,17 @@ export async function makePayment({ phoneNumber, amount, desc }) {
     Hosted in my subdomain -> kifaru.elarchdesigns.com
     it required [phone: String, amount: String, description: String]
     */
-    var response = await fetch(
-      "https://kifaru.elarchdesigns.com/api/v1/mpesa/mpesaPayment",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          phone: phoneNumber,
-          amount: amount,
-          description: desc,
-        }),
-      }
-    );
-
-    console.log(desc);
+    var response = await fetch(`${baseURL}/mpesa/mpesaPayment`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        phone: phoneNumber,
+        amount: amount,
+        description: desc,
+      }),
+    });
 
     // Check if response was successful, if not throw a new Error
     if (!response.ok) throw new Error("Unable to make payment");
