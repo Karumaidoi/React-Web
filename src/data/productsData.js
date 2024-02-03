@@ -3,7 +3,8 @@
 export const productsData = [
   {
     title: "Monstera DK (L)",
-    imagePath: "Plant1.png",
+    imagePath:
+      "https://oesgkkxyzriaxlhtckgy.supabase.co/storage/v1/object/public/plants/Plant1.png",
     noReviews: 385,
     defaultRating: 2.5,
     price: 300,
@@ -11,7 +12,8 @@ export const productsData = [
   },
   {
     title: "Monstera Deliciosa (L)",
-    imagePath: "Plant2.png",
+    imagePath:
+      "https://oesgkkxyzriaxlhtckgy.supabase.co/storage/v1/object/public/plants/Plant2.png",
     noReviews: 23,
     defaultRating: 4.5,
     price: 199,
@@ -19,7 +21,8 @@ export const productsData = [
   },
   {
     title: "Monstera DK (L)",
-    imagePath: "Plant3-png.png",
+    imagePath:
+      "https://oesgkkxyzriaxlhtckgy.supabase.co/storage/v1/object/public/plants/Plant3-png.png",
     noReviews: 10,
     defaultRating: 2,
     price: 10,
@@ -27,7 +30,8 @@ export const productsData = [
   },
   {
     title: "Monstera DK (L)",
-    imagePath: "Plant4png.png",
+    imagePath:
+      "https://oesgkkxyzriaxlhtckgy.supabase.co/storage/v1/object/public/plants/Plant4png.png",
     noReviews: 110,
     defaultRating: 3.5,
     price: 599,

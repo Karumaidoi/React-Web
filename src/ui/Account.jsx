@@ -44,7 +44,7 @@ function Account() {
             </Badge>
 
             <div className="h-[40px] w-[40px] rounded-full bg-green-400 flex items-center justify-center">
-              <div className="h-[35px] w-[35px] rounded-full bg-slate-400 bg-[url('src/assets/user.jpg')] bg-cover bg-center"></div>
+              <div className="h-[35px] w-[35px] rounded-full bg-slate-400 bg-[url('https://oesgkkxyzriaxlhtckgy.supabase.co/storage/v1/object/public/plants/user.jpg?t=2024-02-03T12%3A04%3A56.381Z')] bg-cover bg-center"></div>
             </div>
           </div>
         </div>
@@ -67,16 +67,17 @@ function Account() {
               />
             </button>
             <div>
-              <img
-                className="h-[16rem] w-auto"
-                src={`src/assets/${currentProduct.image}`}
-              />
+              <img className="h-[16rem] w-auto" src={currentProduct.image} />
             </div>
             <div className="flex gap-6 mt-2">
-              <ImageView imagePath={"plants.jpg"} />
-              <ImageView imagePath={"plants.jpg"} />
-              <ImageView imagePath={"plants.jpg"} />
-              <ImageView imagePath={"plants.jpg"} isLast={true} />
+              <ImageView imagePath={"public/assets/plants.jpg"} />
+              <ImageView imagePath={"public/assets/plants.jpg"} />
+              <ImageView
+                imagePath={
+                  "https://oesgkkxyzriaxlhtckgy.supabase.co/storage/v1/object/public/plants/PlantV1.jpg"
+                }
+              />
+              <ImageView imagePath={"public/assets/plants.jpg"} isLast={true} />
             </div>
 
             {/* TextBox */}

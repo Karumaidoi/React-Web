@@ -1,7 +1,7 @@
 function CTABox() {
   return (
     <div className="items-center justify-center self-center">
-      <div className="backdrop-blur-md backdrop-brightness-150 h-[9rem] w-[12rem]  rounded-md bg-[url('src/assets/plants.jpg')] bg-cover  flex items-center flex-col">
+      <div className="backdrop-blur-lg  backdrop-brightness-150 h-[9rem] w-[12rem]  rounded-md bg-[url('https://oesgkkxyzriaxlhtckgy.supabase.co/storage/v1/object/public/plants/plants.jpg')] bg-cover  flex items-center flex-col">
         <div className="mt-3">
           <h3 className="font-bold text-lg text-white">GET 30% OFF</h3>
           <p className="text-white leading-5 mb-4">

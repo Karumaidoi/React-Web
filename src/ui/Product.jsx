@@ -19,10 +19,7 @@ function Product({ title, noReviews, price, defaultRating, image }) {
         <div className="absolute right-3">
           <LikeButton />
         </div>
-        <img
-          src={`src/assets/${image}`}
-          className="h-[13rem] w-auto mb-3 self-center"
-        />
+        <img src={image} className="h-[13rem] w-auto mb-3 self-center" />
         <h3 className="font-[800] text-md mb-2">{title}</h3>
         <div className="flex gap-2">
           <Rate allowHalf defaultValue={defaultRating} />
