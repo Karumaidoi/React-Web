@@ -1,20 +1,15 @@
 /* eslint-disable react/prop-types */
-import { Rate, Button, message } from "antd";
+import { Rate, Button } from "antd";
 import LikeButton from "./LikeButton";
 import { useAppState } from "../context/manageState";
+import toast from "react-hot-toast";
 
 function Product({ title, noReviews, price, defaultRating, image }) {
   // Using our App State
   const { setCurrentProduct, addToCart } = useAppState();
 
-  const [messageApi, contextHolder] = message.useMessage();
-  const info = () => {
-    messageApi.info("Added to Cart");
-  };
-
   return (
     <>
-      {contextHolder}
       <div
         className="border-[1px] rounded-[1rem] border-gray-200 py-4 px-3 flex flex-col items-center relative cursor-pointer"
         onClick={() => {
@@ -41,7 +36,7 @@ function Product({ title, noReviews, price, defaultRating, image }) {
           <div className="flex flex-col items-start">
             <Button
               onClick={() => {
-                addToCart(), info();
+                addToCart(), toast.success("Added to cart");
               }}
             >
               <p>Add to Cart</p>

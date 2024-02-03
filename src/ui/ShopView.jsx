@@ -34,7 +34,7 @@ function ShopView() {
             placeholder="Monstera"
             className="bg-transparent outline-none w-full text-black text-md font-body placeholder:font-semibold"
           />
-          <IoCloseOutline size={24} color="black" className="mr-3" />
+          <IoCloseOutline size={24} color="black" className="mr-0" />
         </div>
 
         {/* Search  */}

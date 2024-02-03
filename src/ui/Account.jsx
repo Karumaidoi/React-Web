@@ -2,6 +2,7 @@ import { Badge, Card } from "antd";
 import { SlHandbag } from "react-icons/sl";
 import { AiOutlineHeart } from "react-icons/ai";
 import { IoCloseOutline } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 import ImageView from "./ImageView";
 import TabsComponent from "./TabsComponent";
@@ -11,7 +12,6 @@ import { useAppState } from "../context/manageState";
 function Account() {
   const { currentProduct, setCurrentProduct, cartNumber, addToCart } =
     useAppState();
-  console.log(cartNumber);
 
   return (
     <div className="grid grid-rows-[75px,1fr] border-x-[1px] border-slate-100 overflow-scroll relative">
@@ -28,7 +28,7 @@ function Account() {
           </button>
 
           <div className="h-[40px] w-[40px] rounded-full bg-green-400 flex items-center justify-center">
-            <div className="h-[35px] w-[35px] rounded-full bg-slate-400 bg-[url('src/assets/user.jpg')] bg-cover "></div>
+            <div className="h-[35px] w-[35px] rounded-full bg-slate-400 bg-[url('src/assets/user.jpg')] bg-cover bg-center"></div>
           </div>
         </div>
       </div>
@@ -82,7 +82,9 @@ function Account() {
             {/* BTN */}
             <button
               className="px-4 py-3 bg-green-600 text-white font-bold text-sm rounded-[.8rem] hover:bg-green-800"
-              onClick={() => addToCart()}
+              onClick={() => {
+                addToCart(), toast.success("Added to cart");
+              }}
             >
               <p>${currentProduct.price} - Add to Cart</p>
             </button>

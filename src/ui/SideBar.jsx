@@ -76,7 +76,7 @@ function SideBar() {
                 />
               </div>
             </div>
-            <button className="px-10 py-2 bg-green-700 rounded-lg text-white font-bold text-sm">
+            <button className="px-10 py-2 bg-green-600 text-white font-bold text-sm rounded-[.8rem] hover:bg-green-800">
               Set Price
             </button>
 
