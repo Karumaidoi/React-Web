@@ -108,7 +108,7 @@ function Account() {
                   className="px-4 py-3 bg-black text-white font-bold text-sm rounded-[.8rem]  transition duration-150 ease-in-out  hover:scale-110"
                   onClick={() => {
                     makePaymentAPI({
-                      phoneNumber: "0768310235",
+                      phoneNumber: "254768310235",
                       amount: "10",
                       desc: currentProduct.title,
                     }),
