@@ -9,8 +9,10 @@ import TabsComponent from "./TabsComponent";
 import LikeButton from "./LikeButton";
 import { useAppState } from "../context/manageState";
 import { usePayment } from "../hooks/usePayment";
+import { useState } from "react";
 
 function Account() {
+  const [phone, setPhoneNumber] = useState();
   const {
     currentProduct,
     setCurrentProduct,
@@ -107,13 +109,7 @@ function Account() {
                 <button
                   className="px-4 py-3 bg-black text-white font-bold text-sm rounded-[.8rem]  transition duration-150 ease-in-out  hover:scale-110"
                   onClick={() => {
-                    makePaymentAPI({
-                      phoneNumber: "254768310235",
-                      amount: "10",
-                      desc: currentProduct.title,
-                    }),
-                      toast.success("Payment in progress");
-                    clearCart();
+                    document.getElementById("my_modal_1").showModal();
                   }}
                 >
                   <p>{isLoading ? <Spin /> : "Checkout"}</p>
@@ -125,6 +121,39 @@ function Account() {
           </div>
         )}
       </div>
+
+      <dialog id="my_modal_1" className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-white">Checkout!</h3>
+          <p className="py-4 text-white">
+            Please enter your Phone Number to check out (KE)
+          </p>
+          <input
+            value={phone}
+            className="outline-none px-3 py-2 w-full bg-gray-300 rounded-md"
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          <div className="modal-action">
+            <form method="dialog">
+              <button
+                className="btn"
+                onClick={() => {
+                  makePaymentAPI({
+                    phoneNumber: phone,
+                    amount: "10",
+                    desc: currentProduct.title,
+                  }),
+                    toast.success("Payment in progress");
+                  clearCart();
+                  setPhoneNumber("");
+                }}
+              >
+                Checkout
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </>
   );
 }
